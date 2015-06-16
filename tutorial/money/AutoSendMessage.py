@@ -14,18 +14,18 @@ def toMain():
 
 
 def clickMenu():
-    device.touch(653, 105, "DOWN_AND_UP")
-    MonkeyRunner.sleep(3)
+    device.press('KEYCODE_MENU', "DOWN_AND_UP")
+    MonkeyRunner.sleep(2)
 
 
 def clickThirdMenu():
     device.touch(456, 340, "DOWN_AND_UP")
-    MonkeyRunner.sleep(3)
+    MonkeyRunner.sleep(2)
 
 
 def clickSecondMenu():
     device.touch(456, 290, "DOWN_AND_UP")
-    MonkeyRunner.sleep(3)
+    MonkeyRunner.sleep(2)
 
 
 def toQrod():
@@ -34,32 +34,38 @@ def toQrod():
     clickThirdMenu()
 
 
+def moveVertify(y):
+    start = (100, y + 300)
+    end = (100, 300)
+    device.drag(start, end, 1, 10)
+
+
 width = 720
 height = 1280
 start_x = width / 6
 start_y = 200
 per_x = width / 3
-per_y = height / 5
 
 # for i in range(1,2):
 # toQrod()
 # clickMenu()
 # clickSecondMenu()
 # MonkeyRunner.sleep(3)
-i = 1
-print(start_x + (i % 3) * per_x)
-print(start_y + (i / 3) * per_y)
-# device.touch(start_x + (i % 3) * per_x, start_y + (i / 3) * per_y, "DOWN_AND_UP")
-# MonkeyRunner.sleep(5)
-newimage = device.takeSnapshot()
-pixel_int = newimage.getRawPixelInt(214, 739)
-
-raw_pixel_int = newimage.getRawPixelInt(494, 739)
-green = -16466430
-print(raw_pixel_int)
-print ((pixel_int == raw_pixel_int and pixel_int == green))
-# if pixel_int == raw_pixel_int and pixel_int == green:
-print('yes')
-device.touch(366, 736, "DOWN")
-MonkeyRunner.sleep(1)
-device.touch(366, 736, "UP")
+# for i in range(1,3):
+# toQrod()
+# clickMenu()
+# clickSecondMenu()
+# for i in range(1,10):
+# i = 1
+# device.touch(start_x + (i % 3) * per_x, start_y, "DOWN_AND_UP")
+for i in range(1, 10):
+    # toQrod()
+    # clickMenu()
+    # clickSecondMenu()
+    print(i)
+    moveVertify((i / 3) * 260)
+    device.touch(start_x + (i % 3) * per_x, start_y, "DOWN_AND_UP")
+    MonkeyRunner.sleep(5)
+# MonkeyRunner.sleep(3)
+# device.touch(start_x + (i % 3) * per_x, start_y + (i / 3) * per_y, "MOVE")
+# device.touch(start_x + (i % 3) * per_x, start_y + (i / 3) * per_y+100, "MOVE")
