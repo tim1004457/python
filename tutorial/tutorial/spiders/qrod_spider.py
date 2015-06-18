@@ -17,10 +17,10 @@ class QrodSpider(BaseSpider):
     def downloadImg(self,fileUrl):
         print('download file:'+fileUrl)
         filename =  (fileUrl.replace('/','_').replace(":","-"))
-        destFile = open("./qrode/" + (filename), 'wb')
         if (os.path.exists('./qrode/'+filename)):
             print('file is exist')
             return
+        destFile = open("./qrode/" + (filename), 'wb')
         request = urllib2.Request(fileUrl)
         request.add_header('User-Agent',
                            'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E)')
