@@ -83,6 +83,29 @@ def sendMessage(idx):
     device.touch(550,840,"DOWN_AND_UP")
     MonkeyRunner.sleep(5)
 
+def clickAva(idx):
+    count_per_pagse = 25;
+
+def isNeedAddFrend():
+    return True
+
+def doAdd():
+    return True
+def isNeedSendAddFrendMessage():
+    return True
+def sendAddFriendMessage():
+    return True
+
+def addFrend(idx):
+    clickAva(idx)
+    if  isNeedAddFrend():
+        doAdd()
+        if isNeedSendAddFrendMessage():
+            sendAddFriendMessage()
+        else :
+            clickBack()
+    else :
+        clickBack()
 
 
 # for i in range(1,2):
@@ -97,14 +120,7 @@ def sendMessage(idx):
 # for i in range(1,10):
 # i = 1
 # device.touch(start_x + (i % 3) * per_x, start_y, "DOWN_AND_UP")
-width = 720
-height = 1280
-start_x = width / 6
-start_y = 300
-per_x = width / 3
-for i in range(0,9):
-    clickMenu()
-    clickFirstMenu()
-    sendMessage(i)
+idx = 0
+clickAva(idx)
 # MonkeyRunner.sleep(3)  # device.touch(start_x + (i % 3) * per_x, start_y + (i / 3) * per_y, "MOVE")
 # device.touch(start_x + (i % 3) * per_x, start_y + (i / 3) * per_y+100, "MOVE")

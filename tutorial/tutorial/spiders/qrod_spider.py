@@ -18,7 +18,7 @@ class QrodSpider(BaseSpider):
         print('download file:'+fileUrl)
         filename =  (fileUrl.replace('/','_').replace(":","-"))
         destFile = open("./qrode/" + (filename), 'wb')
-        if (os.path.exists(filename)):
+        if (os.path.exists('./qrode/'+filename)):
             print('file is exist')
             return
         request = urllib2.Request(fileUrl)
@@ -32,6 +32,7 @@ class QrodSpider(BaseSpider):
         read = res.read()
         destFile.write(read)
         destFile.flush()
+        destFile.close()
         print('download finish')
 
     def parse(self, response):
