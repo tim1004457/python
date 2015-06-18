@@ -14,8 +14,9 @@ class DmozSpider(BaseSpider):
         # "http://www.dmoz.org/Computers/Programming/Languages/Python/Books/",
         # "http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/",
         # "http://www.t66y.com/thread0806.php?fid=7&search=&page=1"
+        # "http://www.baidu.com"
     ]
-    for i in range(210, 250):
+    for i in range(100, 250):
         start_urls.append("http://www.t66y.com/thread0806.php?fid=7&search=&page=" + str(i))
 
     def saveInDb(self, item):
@@ -38,11 +39,7 @@ class DmozSpider(BaseSpider):
             conn.close()
 
     def parse(self, response):
-        if response.body.__len__ < 100000:
-            print('error:'+response.url)
-            self.start_urls.append(response.url)
-            return
-
+        print("receive data")
         host = 'http://www.t66y.com/'
         hxs = Selector(response)
         sites = hxs.xpath('//tr[@class="tr3 t_one"]')

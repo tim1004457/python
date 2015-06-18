@@ -1,5 +1,4 @@
 # -*-coding=utf-8-*-
-from tutorial.qrod import QrodItem
 from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
 import urllib2
