@@ -3,6 +3,9 @@ __author__ = 'bj'
 import string
 import os
 
-exists = os.path.exists(".\\test.txt")
-print(exists)
+filecontent ='测试'
+file_io = open('text.txt','wb')
+file_io.write(filecontent)
+file_io.flush()
+file_io.close()
 

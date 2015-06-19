@@ -67,7 +67,7 @@ def moveVertify(y):
 
 def clickBack():
     device.press('KEYCODE_BACK', ACTION_CLICK)
-    MonkeyRunner.sleep(2)
+    MonkeyRunner.sleep(1)
 
 
 def scanQrode(start_x, start_y, per_x, move_y_dis, startI, endI):
@@ -139,15 +139,32 @@ def isSomeColor(x, y, basepixe):
             return False
     return True
 
+def isSomeColor(newimage,x, y, basepixe):
+    pixel = newimage.getRawPixel(x, y)
+    gateValue = 10
+    for i in range(1, 4):
+        if abs(basepixe[i] - pixel[i]) > gateValue:
+            return False
+    return True
 
 def addFrendHelp(idx):
+    while (idx / 4 >= 5 and idx %4 == 0):
+        moveVertify(200)
+        idx-=4
     click(115 + (idx % 4) * 160, 270 + idx / 4 * 200)
-    startX = [256,256,256,256]
-    startY = [580,716,830, 900]
+    startY = [486,650,716,830, 900]
+    newimage = device.takeSnapshot()
     for y in startY:
-        if (isSomeColor(200, y, BUTTON_GREEN) and isSomeColor(256, y, WHITE_COLOR)):
+        if (isSomeColor(newimage,200, y, BUTTON_GREEN)):
+            isNeedAdd=False
+            for textX in range(0,10):
+                if (isSomeColor(newimage,250+textX,y,WHITE_COLOR)):
+                    isNeedAdd = True
+            if isNeedAdd == False:
+                continue
             click(width / 2, y)
-            if isSomeColor(682, 79, GREEN_COLOR):
+            img = device.takeSnapshot()
+            if isSomeColor(img,615,110, GREEN_COLOR):
                 clickRightCorner()
                 break
     clickBack()
@@ -184,14 +201,20 @@ def addGroupOwner(idx):
 # print(pixel)
 # for i in range(3,10):
 # addFrendHelp(10)
-newimage = device.takeSnapshot()
+# newimage = device.takeSnapshot()
+# clickRightCorner()
 # for y in range(680,780):
 #     pixel = newimage.getRawPixel(256,y)
 #     if (pixel[1]  == 255 and pixel[2] == 255):
 #         print(y)
 #         break
 # print('end')
-# print(isSomeColor(682, 79, GREEN_COLOR))
-addFrendHelp(10)
+# print(newimage.getRawPixel(615,110))
+# print (isSomeColor(newimage,615,110, GREEN_COLOR))
+# for i in range(10,15):
+#     addFrendHelp(i)
 # MonkeyRunner.sleep(3)  # device.touch(start_x + (i % 3) * per_x, start_y + (i / 3) * per_y, "MOVE")
 # device.touch(start_x + (i % 3) * per_x, start_y + (i / 3) * per_y+100, "MOVE")
+
+for i in range(0,25):
+    addFrendHelp(i)
