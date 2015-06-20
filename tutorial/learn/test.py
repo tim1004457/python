@@ -2,10 +2,9 @@
 __author__ = 'bj'
 import string
 import os
-
-filecontent ='测试'
-file_io = open('text.txt','wb')
-file_io.write(filecontent)
-file_io.flush()
-file_io.close()
-
+import re
+content="ActivityRecord{43242 u0 com.tencent.mm/.plugin t2}"
+pattern = re.compile(r'[a-z.]+/[a-z.]+')
+match = pattern.findall(content)
+if match:
+    print match[0].replace("/","")
